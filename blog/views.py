@@ -77,7 +77,7 @@ def sort_posts_from_new_to_old(request):
 
 @login_required
 def sort_posts_from_last_24_hours(request):
-    date_from = datetime.datetime.now() + datetime.timedelta(days=1)
+    date_from = datetime.datetime.now() - datetime.timedelta(days=1)
     posts = Post.objects.filter(
         date_added=date_from).order_by('-date_added')
     return render(request, 'blog/posts.html', {'posts': posts})
